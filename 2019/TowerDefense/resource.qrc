@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/Bg.png</file>
+        <file>image/bullet.png</file>
+        <file>image/Default.png</file>
+        <file>image/enemy.png</file>
+        <file>image/icon_gold.png</file>
+        <file>image/icon_HP.png</file>
+        <file>image/open_spot.png</file>
+        <file>image/tower.png</file>
+        <file>config/Info.plist</file>
+        <file>config/TowersPosition.plist</file>
+        <file>config/Waves.plist</file>
+        <file>image/startpicture.png</file>
+        <file>image/map1.png</file>
+        <file>image/realmap1.png</file>
+        <file>image/luffy.png</file>
+        <file>image/map2.png</file>
+        <file>image/choose.png</file>
+        <file>image/stapicture.png</file>
+        <file>image/monster side2.png</file>
+        <file>image/fastenemy.png</file>
+        <file>image/enemy1.png</file>
+        <file>image/franky.png</file>
+        <file>image/brook.png</file>
+        <file>image/1.png</file>
+        <file>image/2.png</file>
+        <file>image/map3.png</file>
+        <file>image/victory.png</file>
+        <file>image/defeat.png</file>
+        <file>image/towerposition.png</file>
+    </qresource>
+</RCC>
