@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>成绩查询-个人排名</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="../../static/css/font-face.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="../../static/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="../../static/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../../static/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    <table><tr>
+                        <td><img src="../../static/images/icon/logo1.png"></td>
+                        <td><img src="../../static/images/icon/logo2.png"></td>
+                    </tr></table>
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-table"></i>排名查询</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="{% url 'institution_check1' %}">个人查询</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'institution_check2' %}">班级查询</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'institution_check3' %}">查询所有</a>
+                                    </li>
+                                </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-child"></i>问答系统</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="{% url 'institution_qa1' %}">查看问题</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'institution_qa4' %}">回答问题</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap" style="float: right;">
+                            <div class="header-button">
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img src="../../static/images/icon/header.png"/>
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">{{request.session.user_name}}</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src="../../static/images/icon/header.png"/>
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">{{request.session.user_name}}</a>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>账户信息</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>设置</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="{% url 'logout' %}">
+                                                    <i class="zmdi zmdi-power"></i>登出</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+                                <h3 class="title-5 m-b-35">个人排名</h3>
+                                <form action="/institution/institution-check-1" method="post">
+                                    <div class="table-data__tool">
+                                        {% csrf_token %}
+                                        <div class="table-data__tool-left">
+                                            <div class="rs-select2--light rs-select2--md">
+                                                <select class="js-select2" name="choice" onchange="ShowYear(this.value)">
+                                                    <option selected="selected">选择查询类别</option>
+                                                    <option value="1">综合排名</option>
+                                                    <option value="2">核心绩点排名</option>
+                                                    <option value="3">分学年排名</option>
+                                                </select>
+                                                <div class="dropDownSelect2"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rs-select2--light rs-select2--md" id="displayyear" style="display: none;">
+                                            <select class="js-select2" name="selected_year">
+                                                <option selected="selected">选择学年</option>
+                                                {% for year in year_list%}
+                                                <option value={{year}}>{{year}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        <div class="dropDownSelect2"></div>
+                                        </div>
+                                        <div class="table-data__tool-right">
+                                            <div class="input-group">
+                                                <input type="text" id="text-input" name="studentnumber" placeholder="输入学号" class="form-control">
+                                                <button type="submit" class="btn btn-primary btn-sm">确定</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>学号</th>
+                                                <th>姓名</th>
+                                                <th>院系</th>
+                                                <th>专业</th>
+                                                <th>班级</th>
+                                                <th>名次(年级)</th>
+			                                    <th>名次(班级)</th>
+                                                <th>总学分</th>
+                                                <th>总学分绩</th>
+                                                <th>平均学分绩</th>
+                                                <th>总门数</th>
+                                                <th>优</th>
+                                                <th>良</th>
+                                                <th>中</th>
+                                                <th>及格</th>
+                                                <th>不及格</th>
+                                                <th>更新时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for c in select_answer%}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{c.学号}}</td>
+                                                <td>{{c.姓名}}</td>
+                                                <td>{{c.院系}}</td>
+                                                <td>{{c.专业}}</td>
+                                                <td>{{c.班级名}}</td>
+                                                <td>{{c.名次}}</td>
+			                                    <td>{{c.班级名次}}</td>
+                                                <td>{{c.总学分}}</td>
+                                                <td>{{c.总学分绩点}}</td>
+                                                <td>{{c.平均学分绩}}</td>
+                                                <td>{{c.总门数}}</td>
+                                                <td>{{c.优}}</td>
+                                                <td>{{c.良}}</td>
+                                                <td>{{c.中}}</td>
+                                                <td>{{c.及格}}</td>
+                                                <td>{{c.不及格}}</td>
+                                                <td>{{c.导入时间}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright &copy; 2020.Information Of School All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script language="javascript">
+        function ShowYear(id){
+            if(id =="3"){
+                document.getElementById("displayyear").style.display="";
+            }
+            else{
+                document.getElementById("displayyear").style.display="none";
+            }
+        }
+    </script>
+
+    <!-- Jquery JS-->
+    <script src="../../static/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="../../static/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../../static/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="../../static/vendor/slick/slick.min.js">
+    </script>
+    <script src="../../static/vendor/wow/wow.min.js"></script>
+    <script src="../../static/vendor/animsition/animsition.min.js"></script>
+    <script src="../../static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="../../static/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../../static/vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="../../static/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../../static/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../static/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../../static/vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="../../static/js/main.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

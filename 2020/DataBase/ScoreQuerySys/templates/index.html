@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="au theme template">
+<meta name="author" content="Hau Nguyen">
+<meta name="keywords" content="au theme template">
+<!-- Custom Theme files -->
+<link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="../static/css/font-face.css" rel="stylesheet" media="all">
+<link href="../static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<link href="../static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+<link href="../static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<!-- Bootstrap CSS-->
+<link href="../static/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+<!-- Vendor CSS-->
+<link href="../static/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+<link href="../static/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+<link href="../static/vendor/wow/animate.css" rel="stylesheet" media="all">
+<link href="../static/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+<link href="../static/vendor/slick/slick.css" rel="stylesheet" media="all">
+<link href="../static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="../static/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+<!-- Main CSS-->
+<link href="../static/css/theme.css" rel="stylesheet" media="all">
+<!-- Custom Theme files -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="keywords" content="Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<!--Google Fonts-->
+<link href='http://fonts.useso.com/css?family=Roboto:500,900italic,900,400italic,100,700italic,300,700,500italic,100italic,300italic,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<!--Google Fonts-->
+</head>
+<body>
+<div class="login">
+	<b><h2 style="color: #ff4800; font-family: '微软雅黑';font-size: 40px;">信息学院排名查询与问答系统</h2></b>
+	<div class="login-top">
+		<h1 >用  户  登  录</h1>
+		<form action="/index/" method="post">
+			<h4>用户名：</h4>
+			<input type="text" name="username" value="用户名" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '用户名';}">
+			<h4>密码：</h4>
+			<input type="password" name="password" value="密码" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '密码。。。。';}">
+			
+			<div class="forgot">
+				<a><input type="submit" value="登录" style="font-size:20px"></a>
+			</div>
+		</form>
+	    
+	</div>
+	<div class="login-bottom">
+		<h3>
+			<a href="{% url 'vruc_login' %}" class="forget" style="color:white;font-size:20px">
+			<i class="zmdi zmdi-account"></i>微人大登录</a>
+		</h3>
+	</div>
+	
+</div>	
+<div class="copyright">
+	<p>Copyright &copy; 2020.Company name All rights reserved.</p>
+</div>
+
+
+</body>
+</html>

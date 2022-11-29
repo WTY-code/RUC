@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>问答系统-回答问题</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="../../static/css/font-face.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="../../static/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="../../static/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../../static/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    <table><tr>
+                        <td><img src="../../static/images/icon/logo1.png"></td>
+                        <td><img src="../../static/images/icon/logo2.png"></td>
+                    </tr></table>
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-child"></i>问答系统</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="{% url 'qateacher_qa1' %}">查看问题</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'qateacher_qa4' %}">回答问题</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap" style="float:right">
+                            <div class="header-button">
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img src="../../static/images/icon/header.png"/>
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">{{request.session.user_name}}</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src="../../static/images/icon/header.png"/>
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">{{request.session.user_name}}</a>
+                                                    </h5>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>账户信息</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>更改设置</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="{% url 'logout' %}">
+                                                    <i class="zmdi zmdi-power"></i>登出</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE -->
+                                <h3 class="title-5 m-b-35">回答问题</h3>
+                            </div>
+                        </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    {% for q in question %}
+                                    {% if forloop.counter > 1 %}                              
+                                    <div class="card-header">
+                                        <strong class="card-title mb-3">追问{{forloop.counter0}}：{{q.title}}</strong>
+                                    </div>
+                                    {% else %}
+                                    <div class="card-header">
+                                        <strong class="card-title mb-3">{{q.title}}</strong>
+                                    </div>
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <div class="mx-auto d-block">
+                                        <p>
+                                            {{q.content}}
+                                            {% if q.pic %}
+                                            <img src="data:image/jpeg;base64,{{ q.pic }}">
+                                            {% endif %}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    {% for a in answer %}
+                                    {% if a.qno == q.qno %}
+                                        <div class="card-header">
+                                            <strong class="card-title mb-3">回答者：{{a.ansname}}   {{a.time}}</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mx-auto d-block">
+                                            <p>
+                                                {{a.content}}
+                                                {% if a.pic %}
+                                                <img src="data:image/jpeg;base64,{{ a.pic }}">
+                                                {% endif %}
+                                            </p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endfor %}
+                                </div>
+
+                                <div class="card">
+                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <div class="card-body card-block">
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="textarea-input" class=" form-control-label">回答问题</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <textarea name="answer-content" id="answer-content" rows="9" placeholder="我的回答。。。" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="file-multiple-input" class=" form-control-label">补充材料</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="file" id="file" name="file" accept=".jpg,.png" class="form-control-file" style="display:none" onchange="uploadfile()">
+                                                    <label for="file" class='btn btn-success'>上传补充资料</label>
+                                                    <div id="filename" style="line-height:70px"></div>
+                                                </div>
+                                            </div>
+                                            {% if ischild == 0 %}
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="tags" class=" form-control-label">添加标签</label>
+                                                </div>
+                                                {% for tag in oldtags %}
+                                                <div>
+                                                    <p><input type="checkbox" name={{tag.tag_name}} value="public" />{{tag.tag_name}}&emsp; </p>                                 
+                                                </div>
+                                                {% endfor %}
+                                                <div>
+                                                    <p><input type="checkbox" name="others" value="public" onclick="Add_textinput()"/>其他&emsp;</p>  
+                                                </div>
+                                                <div  id="tag" style="display:none">
+                                                    <textarea name="newtag" id="newtag" rows="1" width="80" placeholder="多个标签请以#号分隔" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-6">
+                                                    <p><input type="checkbox" name="if-public" value="public"/> 公开</p>                                           
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-dot-circle-o"></i> 提交
+                                            </button>
+                                            <button type="reset" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-ban"></i> 取消
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright &copy; 2020.School of Information All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function Add_textinput(){
+            if(document.getElementById("tag").style.display=="none"){
+                document.getElementById("tag").style.display="";
+            }
+            else{
+                document.getElementById("tag").style.display="none";
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function uploadfile(){
+            $("#file").click();
+            
+            //jquery获取input file文件名
+            var file = $("#file").val();
+            var fileName = getFileName(file);
+            function getFileName(o){
+                var pos=o.lastIndexOf("\\");
+                return o.substring(pos+1);  
+            }
+            $("#filename").html(fileName);
+        }
+    </script>
+
+    <!-- Jquery JS-->
+    <script src="../../static/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="../../static/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../../static/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="../../static/vendor/slick/slick.min.js">
+    </script>
+    <script src="../../static/vendor/wow/wow.min.js"></script>
+    <script src="../../static/vendor/animsition/animsition.min.js"></script>
+    <script src="../../static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="../../static/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../../static/vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="../../static/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../../static/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../static/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../../static/vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="../../static/js/main.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

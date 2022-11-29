@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>问答系统-查看问题</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="../../static/css/font-face.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="../../static/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="../../static/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../../static/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    <table><tr>
+                        <td><img src="../../static/images/icon/logo1.png"></td>
+                        <td><img src="../../static/images/icon/logo2.png"></td>
+                    </tr></table>
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-child"></i>问答系统</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="{% url 'qateacher_qa1' %}">查看问题</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'qateacher_qa4' %}">回答问题</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap" style="float:right">
+                            <div class="header-button">
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img src="../../static/images/icon/header.png"/>
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">{{request.session.user_name}}</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src="../../static/images/icon/header.png"/>
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">{{request.session.user_name}}</a>
+                                                    </h5>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>账户信息</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>更改设置</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="{% url 'logout' %}">
+                                                    <i class="zmdi zmdi-power"></i>登出</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE -->
+                                <h3 class="title-5 m-b-35">待回答问题</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-striped table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>提问日期</th>
+                                                <th>问题标题</th>
+                                                <th>姓名</th>
+                                                <th>学号</th> 
+                                                <th> </th>                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for r in result %}
+                                            <tr>
+                                                <td>{{r.time}}</td>
+                                                {% if r.parent >= 0%}
+                                                <td><a href="{% url 'qateacher_qa2' r.qno %}">追问：{{r.title}}</a></td>
+                                                {% else %}
+                                                <td><a href="{% url 'qateacher_qa2' r.qno %}">{{r.title}}</a></td>
+                                                {% endif %}
+                                                <td>{{r.askname}}</td>
+                                                <td>{{r.askno}}</td>
+                                                <td>
+                                                    <a href="{% url 'qateacher_qa3' r.qno %}">
+                                                        <button class="btn btn-success btn-sm">回答</button>    
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>    
+                                </div>
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright &copy; 2020.School of Information All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="../../static/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="../../static/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../../static/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="../../static/vendor/slick/slick.min.js">
+    </script>
+    <script src="../../static/vendor/wow/wow.min.js"></script>
+    <script src="../../static/vendor/animsition/animsition.min.js"></script>
+    <script src="../../static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="../../static/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../../static/vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="../../static/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../../static/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../static/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../../static/vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="../../static/js/main.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

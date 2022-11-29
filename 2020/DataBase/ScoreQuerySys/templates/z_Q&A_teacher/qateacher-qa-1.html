@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>问答系统-查看问题</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="../../static/css/font-face.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="../../static/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="../../static/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../../static/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../../static/css/theme.css" rel="stylesheet" media="all">
+
+    <!-- js 百度 CDN  -->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script language="javascript">
+        function Show(id){
+            for(var i=1;i<3;i++){
+                document.getElementById("Tab"+i).style.display="none";
+            }
+            if(id!="" && !isNaN(id)){
+                document.getElementById("Tab"+id).style.display="";
+            }
+        }
+    </script>
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    <table><tr>
+                        <td><img src="../../static/images/icon/logo1.png"></td>
+                        <td><img src="../../static/images/icon/logo2.png"></td>
+                    </tr></table>
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-child"></i>问答系统</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="{% url 'qateacher_qa1' %}">查看问题</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'qateacher_qa4' %}">回答问题</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap" style="float:right">
+                            <div class="header-button">
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img src="../../static/images/icon/header.png"/>
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">{{request.session.user_name}}</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src="../../static/images/icon/header.png" />
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">{{request.session.user_name}}</a>
+                                                    </h5>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>账户信息</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>更改设置</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="{% url 'logout' %}">
+                                                    <i class="zmdi zmdi-power"></i>登出</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE -->
+                                <h3 class="title-5 m-b-35">查看问题</h3>
+
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--md">
+                                            <select class="js-select2" name="property" onchange="Show(this.value)">
+                                                <option value="1" selected="selected">公开问题</option>
+                                                <option value="2">全部问题</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                    <form class="form-header" action="" method="POST">
+                                        <input class="au-input au-input--xl" type="text" name="search" placeholder="搜索问题内容" />
+                                        <button class="au-btn--submit" type="submit">
+                                            <i class="zmdi zmdi-search"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row form-group">
+                            <form class="form-header" action="" method="POST" id="myform" style="margin: 0 auto;">
+                                {% for tag in oldtags %}
+                                    {% if forloop.counter <= 5 %}
+                                        <button type="submit" name={{tag.tag_name}} id={{tag.tag_name}} class="btn btn-secondary rounded-circle" onclick="clk(this)">
+                                            <span>
+                                                <div><small>{{tag.tag_name}}</small></div>
+                                            </span>
+                                        </button>
+                                        &ensp;
+                                    {% endif %}
+                                {% endfor %}
+                                <button type="button" name="others" id="others" class="btn btn-secondary rounded-circle" onclick="Add_tag()">
+                                    <span>
+                                        <div><small>其他</small></div>
+                                    </span>
+                                </button>
+                                &ensp;
+                                <div id="tag" style="display:none">
+                                    <select class="js-select2" name="selected_label" style="display: inline-block;" onchange="submitForm();">
+                                        <option selected="selected">选择标签</option>
+                                        {% for tag in oldtags %}
+                                        {% if forloop.counter > 5 %}
+                                        <option value={{tag.tag_name}}>{{tag.tag_name}}</option>  
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+
+                                    <table class="table table-borderless table-striped table-data3" id = "Tab1">
+                                        <thead>
+                                            <tr>
+                                                <th>提问日期</th>
+                                                <th>问题标签</th>
+                                                <th>问题标题</th>
+                                                <th>回答者</th> 
+                                                <th>回答日期</th>   
+                                                <th>取消公开</th>                                       
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for q in publicques %}
+                                            <tr>
+                                                <td>{{q.time1}}</td>
+                                                <form class="form-header" action="" method="POST" id="myform">
+                                                <td>
+                                                    <ul style white-space:nowrap>
+                                                        {% for tag in q.tags %}
+                                                        <button type="submit" name={{tag}} class="tag" style="display:inline-block;color:blueviolet">
+                                                                <span>{{tag}};</span>
+                                                        </button>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </td>
+                                                </form>
+                                                <td><a href="{% url 'qateacher_qa2' q.qno %}">{{q.title}}</a></td>
+                                                <td>{{q.ansname}}</td>
+                                                <td>{{q.time2}}</td>
+                                                <form action="" method="POST">
+                                                    <td>
+                                                        <textarea name="cancelpublic" style="display: none;">{{q.qno}}</textarea>
+                                                        <button type="submit" class="btn btn-danger btn-sm">取消公开</button>    
+                                                    </td>
+                                                </form>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                    <table class="table table-borderless table-striped table-data3" id = "Tab2" style="display: none;">
+                                        <thead>
+                                            <tr>
+                                                <th>提问日期</th>
+                                                <th>问题标题</th>
+                                                <th>学号</th>
+                                                <th>姓名</th> 
+                                                <th>状态</th>
+                                                <th>设置公开</th>                                           
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for t in result %}
+                                            <tr>
+                                                <td>{{t.4}}</td>
+                                                {% if t.5 >= 0 %}
+                                                <td><a href="{% url 'qateacher_qa2' t.0 %}">追问：{{t.1}}</a></td>
+                                                {% else %}
+                                                <td><a href="{% url 'qateacher_qa2' t.0 %}">{{t.1}}</a></td>
+                                                {% endif %}
+                                                <td>{{t.2}}</td>
+                                                <td>{{t.3}}</td>
+                                                {% if t.6 == 0 %}
+                                                <td class="denied"><a href="{% url 'qateacher_qa3' t.0 %}" style="color: red;">未解决</a></td>
+                                                {% else %}
+                                                <td class="process">已解决</td>
+                                                {% endif %} 
+                                                {% if t.7 == 1 %}
+                                                <form action="" method="POST">
+                                                    <td>
+                                                        <textarea name="setpublic" style="display: none;">{{t.0}}</textarea>
+                                                        <button type="submit" class="btn btn-success btn-sm">公开</button>    
+                                                    </td>
+                                                </form>
+                                                {% else %}
+                                                <td></td>
+                                                {% endif %}                          
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright &copy; 2020.School of Information All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function Add_tag(){
+            if(document.getElementById("tag").style.display=="none"){
+                document.getElementById("tag").style.display="";
+            }
+            else{
+                document.getElementById("tag").style.display="none";
+            }
+        }
+        function clk(element){
+            var id = element.id;
+            var x = document.getElementById(id);
+            if(x.classList.contains("btn-secondary")){
+                x.classList.remove("btn-secondary");
+                x.classList.add("btn-primary");
+            }
+            else{
+                x.classList.remove("btn-primary");
+                x.classList.add("btn-secondary");
+            }
+        }
+        function submitForm(){
+            var form = document.getElementById("myform");
+            form.submit();
+        }
+    </script>
+
+    <!-- Jquery JS-->
+    <script src="../../static/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="../../static/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../../static/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="../../static/vendor/slick/slick.min.js">
+    </script>
+    <script src="../../static/vendor/wow/wow.min.js"></script>
+    <script src="../../static/vendor/animsition/animsition.min.js"></script>
+    <script src="../../static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="../../static/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../../static/vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="../../static/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../../static/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../static/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../../static/vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="../../static/js/main.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->
